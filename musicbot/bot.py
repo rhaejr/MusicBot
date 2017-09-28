@@ -1155,6 +1155,12 @@ class MusicBot(discord.Client):
 
             return Response(helpmsg, reply=True, delete_after=60)
 
+    async def cmd_test(self, channel):
+        """
+        Sends a test message to the channel
+        """
+        return Response("Hello, {}".format(channel.name))
+
     async def cmd_blacklist(self, message, user_mentions, option, something):
         """
         Usage:
