@@ -758,6 +758,9 @@ class MusicBot(discord.Client):
 
             return Response(helpmsg, reply=True, delete_after=60)
 
+    async def cmd_test(self):
+        return Response("Hello, world!")
+
     async def cmd_blacklist(self, message, user_mentions, option, something):
         """
         Usage:
