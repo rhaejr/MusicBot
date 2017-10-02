@@ -9,7 +9,7 @@ import logging
 import asyncio
 import pathlib
 import traceback
-import subprocess, signal, psutil
+import subprocess, signal
 
 import aiohttp
 import discord
