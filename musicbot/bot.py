@@ -9,6 +9,7 @@ import logging
 import asyncio
 import pathlib
 import traceback
+import subprocess, signal
 
 import aiohttp
 import discord
@@ -1159,7 +1160,13 @@ class MusicBot(discord.Client):
         """
         Sends a test message to the channel
         """
+        proc = await subprocess.Popen("Test_scripts/test.sh")
+        print(proc.pid)
         return Response("Hello, {}".format(channel.name))
+
+    async def cmd_stoptest(self):
+
+        return Response("Stoped")
 
     async def cmd_blacklist(self, message, user_mentions, option, something):
         """
