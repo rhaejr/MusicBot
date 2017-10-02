@@ -9,7 +9,7 @@ import logging
 import asyncio
 import pathlib
 import traceback
-import subprocess, signal
+import subprocess, signal, psutil
 
 import aiohttp
 import discord
@@ -1166,13 +1166,7 @@ class MusicBot(discord.Client):
 
     async def cmd_stoptest(self):
 
-        p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
-        out, err = p.communicate()
-
-        for line in out.splitlines():
-            if 'test.sh' in line:
-                pid = int(line.split(None, 1)[0])
-                os.kill(pid, signal.SIGKILL)
+        os.system("killall -9 test.sh")
 
         return Response("Stoped")
 
