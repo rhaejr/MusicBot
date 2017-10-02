@@ -1160,11 +1160,19 @@ class MusicBot(discord.Client):
         """
         Sends a test message to the channel
         """
-        proc = await subprocess.Popen("musicbot/Test_scripts/test.sh")
+        proc = subprocess.Popen("musicbot/Test_scripts/test.sh")
         print(proc.pid)
         return Response("Hello, {}".format(channel.name))
 
     async def cmd_stoptest(self):
+
+        p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
+        out, err = p.communicate()
+
+        for line in out.splitlines():
+            if 'test.sh' in line:
+                pid = int(line.split(None, 1)[0])
+                os.kill(pid, signal.SIGKILL)
 
         return Response("Stoped")
 
