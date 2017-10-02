@@ -1160,7 +1160,7 @@ class MusicBot(discord.Client):
         """
         Sends a test message to the channel
         """
-        proc = await subprocess.Popen("Test_scripts/test.sh")
+        proc = await subprocess.Popen("musicbot/Test_scripts/test.sh")
         print(proc.pid)
         return Response("Hello, {}".format(channel.name))
 
