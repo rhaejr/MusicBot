@@ -9,7 +9,7 @@ import logging
 import asyncio
 import pathlib
 import traceback
-import subprocess, signal
+import subprocess, signal, re
 
 import aiohttp
 import discord
@@ -1119,7 +1119,7 @@ class MusicBot(discord.Client):
 
         # t-t-th-th-that's all folks!
 
-    async def cmd_help(self, command=None):
+    async def cmd_help(self, ):
         """
         Usage:
             {command_prefix}help [command]
@@ -1163,6 +1163,13 @@ class MusicBot(discord.Client):
         proc = subprocess.Popen("musicbot/Test_scripts/test.sh")
         print(proc.pid)
         return Response("Hello, {}".format(channel.name))
+
+    async def cmd_stopark(self):
+        s = subprocess.Popen(['ps', 'axw'], stdout = subprocess.PIPE)
+        for x in s.stdout:
+            if re.search('ark', x):
+                return Response("True")
+        return Response('False')
 
     async def cmd_stoptest(self):
 
