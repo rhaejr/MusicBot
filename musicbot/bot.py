@@ -1165,9 +1165,12 @@ class MusicBot(discord.Client):
         return Response("Hello, {}".format(channel.name))
 
     async def cmd_stopark(self):
+        """
+        Stop Ark Server
+        """
         s = subprocess.Popen(['ps', 'axw'], stdout = subprocess.PIPE)
         for x in s.stdout:
-            if re.search('ark', x):
+            if re.search('ark', str(x)):
                 return Response("True")
         return Response('False')
 
